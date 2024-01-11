@@ -25,7 +25,7 @@ export default function Questao(props: QuestaoProps){
   function rederizarRespostas() {
     return questao.respostas.map((resposta, i)=> (
       <Resposta 
-        key={`${i}`}
+        key={`${questao.id}-${i}`}
         valor={resposta}
         indice={i}
         letra={letra[i].valor}

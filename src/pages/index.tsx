@@ -6,7 +6,8 @@ import { useRouter } from 'next/router'
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['200', '400', '600', '700'] })
 
-const BASE_URL = 'http://localhost:3000/api'
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+console.log(BASE_URL)
 
 export default function Home() {
   const [questao, setQuestao] = useState<QuestaoModel | null>(null)
@@ -23,9 +24,7 @@ export default function Home() {
   async function obterQuestao(idDaQuestao: number) {
     const resp = await fetch(`${BASE_URL}/questoes/${idDaQuestao}`)
     const json = await resp.json()
-    console.log(json)
     const novaQuestao = QuestaoModel.criarUsandoObjeto(json)
-    console.log(novaQuestao)
     setQuestao(novaQuestao.embaralharRespostas())
   }
 
