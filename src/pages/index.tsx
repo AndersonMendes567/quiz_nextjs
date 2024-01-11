@@ -6,9 +6,6 @@ import { useRouter } from 'next/router'
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['200', '400', '600', '700'] })
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
-console.log(BASE_URL)
-
 export default function Home() {
   const [questao, setQuestao] = useState<QuestaoModel | null>(null)
   const [idsDasQuestoes, setIdsDasQuestoes] = useState<number[]>([])
@@ -16,13 +13,13 @@ export default function Home() {
   const route = useRouter()
 
   async function obterIdsDasQuestoes() {
-    const resp = await fetch(`${BASE_URL}/questionario`)
+    const resp = await fetch(`/api/questionario`)
     const idsDasQuestoes = await resp.json()
     setIdsDasQuestoes(idsDasQuestoes)
   }
 
   async function obterQuestao(idDaQuestao: number) {
-    const resp = await fetch(`${BASE_URL}/questoes/${idDaQuestao}`)
+    const resp = await fetch(`/api/questoes/${idDaQuestao}`)
     const json = await resp.json()
     const novaQuestao = QuestaoModel.criarUsandoObjeto(json)
     setQuestao(novaQuestao.embaralharRespostas())
