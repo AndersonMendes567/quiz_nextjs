@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   font-size: 20px;
 }
 
@@ -15,4 +15,17 @@
 
 .wrapp {
   display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .wrapp {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .titulo {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
 }
